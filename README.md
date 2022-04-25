@@ -8,7 +8,7 @@
 
 原设计被发布在了BEMANICN上：[[图一乐\]音击迷你控制器的制作 - BEMANICN](https://bemani.cc/d/142)。
 
-注：我在设计时图方便直接用了嘉立创的EDA，所以source files里的pcbDoc文件是用立创EDA重新导出的，所以AD在读取的时候可能会遇到些问题。
+注：我在设计时图方便直接用了嘉立创的EDA，所以source files里的pcbDoc文件是用立创EDA重新导出的，所以AD在读取的时候可能会遇到些问题，而json文件则是可以被立创EDA直接读取的工程文件。
 
 ## 结构
 
@@ -38,6 +38,8 @@ This is a mini controller for SEGA's arcade rhythm game ONGEKI.
 This is a modified version based on [Lee's design](https://github.com/KaiXuan233/Minigeki).
 
 The original design also has been posted on BEMANICN forum (in Chinese): [[图一乐\]音击迷你控制器的制作 - BEMANICN](https://bemani.cc/d/142)
+
+PS: I used EasyEDA(aka. LCEDA) to create the pcb, so the pcbDoc file in the source files folder is exported from EasyEDA, and it can cause some problem in Altium Designer. The .json file is the original EasyEDA file and can be read by EasyEDA directly.
 
 ## Structure
 
