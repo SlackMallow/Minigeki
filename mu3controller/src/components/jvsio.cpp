@@ -1,4 +1,3 @@
-
 #include <FastLED.h>
 
 #define LOG(a) void(0)
@@ -13,8 +12,8 @@ namespace component
     CRGB strip[26];
     void start()
     {  
-      FastLED.addLeds<WS2812B, 10, GRB>(rightColors, 1);
-      FastLED.addLeds<WS2812B, 16, GRB>(leftColors, 1);
+      FastLED.addLeds<WS2812B, 16, GRB>(rightColors, 1);
+      FastLED.addLeds<WS2812B, 10, GRB>(leftColors, 1);
       FastLED.show();
       Serial.begin(115200);
     }

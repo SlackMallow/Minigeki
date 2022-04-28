@@ -17,10 +17,9 @@ namespace component
             5, 6, 7, 14, 9};
 
         CRGB lightColors[6];
-        // 因为我的接线顺序是反的，所以需要把存储的RGB数据颠倒一下
         CRGB lightColorsReverse[6];
-        CRGB leftMenu[1];
-        CRGB rightMenu[1];
+        CRGB menuLeft[1];
+        CRGB menuRight[1];
 
         void start()
         {
@@ -32,8 +31,8 @@ namespace component
 
             // setup led_t
             FastLED.addLeds<WS2812B, LED_PIN, GRB>(lightColorsReverse, 6);
-            FastLED.addLeds<WS2812B, LED_LEFT_MENU, GRB>(leftMenu, 1);
-            FastLED.addLeds<WS2812B, LED_RIGHT_MENU, GRB>(rightMenu, 1);
+            FastLED.addLeds<WS2812B, LED_LEFT_MENU, GRB>(menuLeft, 1);
+            FastLED.addLeds<WS2812B, LED_RIGHT_MENU, GRB>(menuRight, 1);
         }
 
         bool read_io(raw_hid::output_data_t *data)
@@ -41,7 +40,7 @@ namespace component
             bool updated = false;
             for (auto i = 0; i < 10; i++)
             {
-                auto read = digitalRead(PIN_MAP[i]) == LOW;
+                auto read = digitalRead(PIN_MAP[i]) ==LOW;
                 if (read != data->buttons[i])
                 {
                     data->buttons[i] = read;
@@ -77,8 +76,8 @@ namespace component
         {
             FastLED.setBrightness(data.ledBrightness);
 
-            leftMenu[0] = CRGB::Red;
-            rightMenu[0] = CRGB::Yellow;
+            menuLeft[0] = CRGB::Red;
+            menuRight[0] = CRGB::Yellow;
             //for(int i = 0; i < 3; i++) {
             //    memcpy(&lightColors[2-i], &data.ledColors[i], 3);
             //memcpy(&lightColors[i + 3], &data.ledColors[i + 5], 3);
@@ -90,13 +89,13 @@ namespace component
                 memcpy(&lightColors[5 - i], &data.ledColors[i], 3);
                 memcpy(&lightColors[2 - i], &data.ledColors[i + 5], 3);
             }
-            /*for(int i=5;i<8;i++){
-                memcpy(&lightColors[10-i], &data.ledColors[i], 3);
-            }*/
             for (int i = 0; i < 6; i++)
             {
                 lightColorsReverse[i] = lightColors[5 - i];
             }
+            /*for(int i=5;i<8;i++){
+                memcpy(&lightColors[10-i], &data.ledColors[i], 3);
+            }*/
 
             FastLED.show();
         }
